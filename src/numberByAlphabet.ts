@@ -1,10 +1,12 @@
 export class AlphabetNumbers {
 	alphabet: string[]
 	constructor() {
-		this.alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+		this.alphabet = 'abcdefghijklmnopqrstuvwxyz'.split('')
 	}
+	// This function returns the number that represents each letter of the alphabet.
+	// If it is a digit, returns that digit
 	public accumulateNumbersOfLetters(phrase: string): number {
-		const splittedPhrase = phrase.toLowerCase().trim().split('')
+		const splittedPhrase = phrase.toLowerCase().replace(/\s/g, '').split('')
 		let result = ''
 		for (const letter of splittedPhrase) {
 			const indexOfLetter = this.alphabet.indexOf(letter.toLowerCase())
@@ -18,10 +20,11 @@ export class AlphabetNumbers {
 	}
 
 	public sumUntilLengthOne(value: string): number {
+		// It sums all representing numbers of letters on a string variable until it gets ONE SINGLE NUMBER.
 		const numbers = this.accumulateNumbersOfLetters(value)
 		let sumSplitted: number = String(numbers)
 			.toLowerCase()
-			.trim()
+			.replace(/\s/g, '')
 			.split('')
 			.reduce((acc: number, current: string) => (acc += Number(current)), 0)
 		let result = String(sumSplitted).length
@@ -35,7 +38,9 @@ export class AlphabetNumbers {
 	}
 
 	public eachLetterOneNumber(phrase: string): number {
-		const splittedValue = phrase.toLowerCase().trim().split('')
+		// Each letter needs ONE representing number. Following this premise, if you have the letter "S", for example, S has the representing number 18. This algorithm will sum the numbers until it gets a single representing number. In this case, "S" has a representing number 9.
+		// If the parameter "phrase" is "SSssSs" it will return 999999
+		const splittedValue = phrase.toLowerCase().replace(/\s/g, '').split('')
 		let result = ''
 		for (const letter of splittedValue) {
 			const indexOfLetter = this.alphabet.indexOf(letter.toLowerCase())

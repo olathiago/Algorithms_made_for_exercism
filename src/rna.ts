@@ -18,6 +18,7 @@ export function translate(input: string): string[] {
 		if (rna === 'UAA' || rna === 'UAG' || rna === 'UGA') {
 			return result
 		}
+		// Red flag: 🚩 Big O Notation will be kinda sad here but I it will be ok.
 		for (const [index, item] of Object.entries(translation)) {
 			// eslint-disable-next-line array-callback-return
 			item.map((value: string) => {

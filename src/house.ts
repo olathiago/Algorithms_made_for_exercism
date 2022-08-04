@@ -1,3 +1,5 @@
+// The solution could be different here but I chose to try it using EXACTLY the way data was formatted when received. To simulate a "real world" situation.
+
 const nursery_rhyme = `This is the house that Jack built.
 
 This is the malt

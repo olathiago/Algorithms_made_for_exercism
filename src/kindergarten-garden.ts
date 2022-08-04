@@ -1,11 +1,6 @@
-//
-// This is only a SKELETON file for the 'Kindergarten Garden' exercise.
-// It's been provided as a convenience to get you started writing code faster.
-//
+const studentsNames: Student[] = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Fred', 'Ginny', 'Harriet', 'Ileana', 'Joseph', 'Kincaid', 'Larry']
 
-const DEFAULT_STUDENTS: Student[] = ['Alice', 'Bob', 'Charlie', 'David', 'Eve', 'Fred', 'Ginny', 'Harriet', 'Ileana', 'Joseph', 'Kincaid', 'Larry']
-
-const PLANT_CODES = {
+const plantCodes = {
 	G: 'grass',
 	V: 'violets',
 	R: 'radishes',
@@ -13,13 +8,14 @@ const PLANT_CODES = {
 } as const
 
 type Student = string
-type Plant = typeof PLANT_CODES[keyof typeof PLANT_CODES]
+type Plant = typeof plantCodes[keyof typeof plantCodes]
 type Plants = Plant[]
 
+// The solution could be different here but I chose to try it using EXACTLY the way data was formatted when received. To simulate a "real world" situation.
 export class Garden {
 	diagram: string
 	students: Student[]
-	constructor(diagram: string, students = DEFAULT_STUDENTS) {
+	constructor(diagram: string, students = studentsNames) {
 		this.diagram = diagram
 		this.students = students
 	}
@@ -35,7 +31,7 @@ export class Garden {
 		}
 		let result = []
 		for (let code of pots) {
-			result.push((PLANT_CODES as any)[code])
+			result.push((plantCodes as any)[code])
 		}
 		return result as Plants
 	}

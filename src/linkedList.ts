@@ -10,7 +10,7 @@ export class Node {
 	}
 }
 
-export class LinkedList {
+export class LinkedList<T extends Node> {
 	head: Node | null
 	tail: Node | null
 
@@ -20,7 +20,7 @@ export class LinkedList {
 	}
 
 	// add to end of list / tail
-	append(value: any): void {
+	push(value: T): void {
 		if (!this.tail) {
 			this.head = this.tail = new Node(value)
 		} else {
@@ -32,7 +32,7 @@ export class LinkedList {
 	}
 
 	// add to the beginning of list / head
-	prepend(value: any): void {
+	unshift(value: T): void {
 		if (!this.head) {
 			this.head = this.tail = new Node(value)
 		} else {
@@ -43,7 +43,8 @@ export class LinkedList {
 		}
 	}
 
-	deleteHead(): void {
+	// Remove value at front
+	shift(): void {
 		if (!this.head) {
 			return
 		} else {
@@ -61,7 +62,8 @@ export class LinkedList {
 		}
 	}
 
-	deleteTail(): void {
+	// Remove value at back
+	pop(): void {
 		if (!this.tail) {
 			return
 		} else {
@@ -78,7 +80,33 @@ export class LinkedList {
 		}
 	}
 
-	search(value: any): Node | null {
+	count(): number {
+		let head = this.head
+		let count = 0
+		while (head?.value) {
+			count += 1
+			head = head.next
+		}
+		return count
+	}
+
+	delete(value: T): string {
+		let prev: Node | null = null
+		let next: Node | null = null
+		let currentNode: Node | null = this.head
+		while (currentNode) {
+			if (currentNode.value === value) {
+				currentNode = next
+				return `O valor ${value} foi deletado da lista.`
+			}
+			prev = currentNode.prev
+			currentNode = currentNode.next
+			next = currentNode?.next
+		}
+		throw new Error('O valor não existe na lista.')
+	}
+
+	search(value: T): Node | null {
 		let currentNode = this.head
 
 		while (currentNode) {
